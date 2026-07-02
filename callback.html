@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok OAuth Callback - PIPO TikTok Studio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      margin: 40px auto;
+      max-width: 760px;
+      padding: 0 20px;
+    }
+    code, textarea {
+      font-family: Consolas, monospace;
+    }
+    textarea {
+      box-sizing: border-box;
+      min-height: 92px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>TikTok authorization received</h1>
+    <p>Copy the authorization code below and return to the local PIPO TikTok Studio setup.</p>
+    <label for="code"><strong>Authorization code</strong></label>
+    <textarea id="code" readonly></textarea>
+    <p id="status"></p>
+  </main>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code") || "";
+    const error = params.get("error") || "";
+    document.getElementById("code").value = code;
+    document.getElementById("status").textContent = error
+      ? "TikTok returned an error: " + error
+      : "If the code box is filled, authorization worked.";
+  </script>
+</body>
+</html>
